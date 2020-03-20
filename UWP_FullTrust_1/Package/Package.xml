@@ -359,85 +359,11 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>17855StefanWick.UWPFullTrustSampleStep1</MainPackageIdentityName>
+    <MainPackageIdentityName>HateSpeechDetector</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>UWP FullTrust Sample Step 1</ReservedName>
+      <ReservedName>UWP FullTrust HS Detector</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
-  <AccountPackageIdentityNames>
-    <MainPackageIdentityName>17855StefanWick.1ProcRadio</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.80WatsonTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.81WatsonTest</MainPackageIdentityName>
-    <MainPackageIdentityName>StefanWick.AccountSettingsTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.App2AppApp</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.App2Capture</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.BetaPageMix71</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.CaptureHelloWorld</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.CentennialCrashTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.CentennialHiddenTestApp</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.CentennialPushSample</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.CloseRequestedTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.CloseRequestedTest2</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.ConsoleforUWP</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.CrashTest80</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.DataGridtoExcel</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.DocWho</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.ExtendedExecutionBugRepro</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.FlickerRepro</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.Headtrax2001</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.HelloWorldConsole</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.Hybridx86Test</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.JAFT</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.JupiterCrashTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.JupiterWatsonTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.JustForTestswick</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.LicenseInfoTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.MediaResourceTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.MFCAppwithPushNotification</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.MFCApplication1</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.NativeJupiterCrashes</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.NETStd20TestApp</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.OrgTrackerDemo</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.13579E405D190</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.PowerfulDesktopUWP</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.PrelaunchTestnew</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.PrelaunchTestold</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.PrinterInterop</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.RunForeverWhenMinimized</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.SAFT8.1</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.SAFT80</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.SelfhostUWP</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.ShapeRecognitionSample</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.SL81Betatest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.swickapp11109</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.swicktest11022015</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.SWickWatsonTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.UIAClientSample</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.UniversalStressApp</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.UWPDevForums</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.UWPwithSystrayextension</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.VB6AppwithXAMLSample</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.VhatsApp</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.Whom</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.Who-MSFT</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.Win10WPF</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.WinformChartSamples</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.WinformsAppService</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.WinformsChartsSamples</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.WinFormsChartSample</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.WPFAppasShareTarget</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.x86AppxTest</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.zBatterySaver</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.zPacMan</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.zSneaker</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.zVhatzApp</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.zViberz</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.zWhatzApp</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.ZZZMyFirstApp</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.ZZZMyFirstSL81App</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.ZZZMyFirstUAP</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.zzzPushDemo</MainPackageIdentityName>
-    <MainPackageIdentityName>17855StefanWick.zzzPacMan</MainPackageIdentityName>
-  </AccountPackageIdentityNames>
+ 
   <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9ND9W9HWSWNS" />
 </StoreAssociation>

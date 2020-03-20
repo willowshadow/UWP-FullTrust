@@ -4,16 +4,114 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
+    xmlns:local="using:HateSpeechDetector.Views"
+    xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Style="{ThemeResource ResourceKey=PageStyle}"
     mc:Ignorable="d">
-    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+    <Grid x:Name="ContentArea">
+        <Grid Margin="0,0,810,0" RequestedTheme="Dark">
+
+            <!--Grid column and rowdefinition define how much rows and width will the grid take. * means as much as avaliable-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--these border tags are setting background colour of the grid-->
+            <Border Background="#2f5cb6" Margin="0,0,-115,0" d:IsHidden="True"/>
+
+
+
+            <StackPanel Grid.Column="1">
+
+                <TextBox
+                    x:Name="Keyword"
+                    FontSize="23"
+                    Width="400"
+                    Height="50"
+                    BorderThickness="2"
+                    BorderBrush="AliceBlue"
+                    PlaceholderText="Enter Keywords"
+                    Foreground="CadetBlue"
+                    PlaceholderForeground="CadetBlue"               
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin="0,30,200,0"/>
+                <Button
+                    x:Name="Detect"
+                    CompositeMode="SourceOver" 
+                    Content="Start Stream"
+                    Click="Button_Click"
+                    BorderBrush="AliceBlue"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    BorderThickness="2"
+                    Height="50"
+                    Margin="610,-50,0,0"
+                    RenderTransformOrigin="0.5,0.5"/>
+
+            </StackPanel>
+
+            <ProgressRing x:Name="progress" IsActive="False" Height="100" Width="100" Foreground="AliceBlue" Margin="0,0,0,400" />
+
+
+
+            <!--these border tags are setting background colour of the grid-->
+
+
+
+
+
+        </Grid>
+        <Grid RequestedTheme="Dark" Height="1080" Margin="900,0,0,0" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--these border tags are setting background colour of the grid-->
+            <Border Background="#152951"/>
+
             <!--
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.
             -->
-            <Button Content="Check" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
+            <!--Listview for displaying items from database ( x:Bind Items takes elements from ITEM class) datafetch takes 1 element at a time -->
+            <ListView x:Name="ItemsList" ShowsScrollingPlaceholders="True" CanBeScrollAnchor="True" ItemContainerStyle="{ThemeResource ListViewItemExpanded}" ItemsSource="{x:Bind Path=Items}" DataFetchSize="1" IncrementalLoadingTrigger="None" IncrementalLoadingThreshold="1">
+                <ListView.ItemTemplate>
+                    <!--Datatemplate simply creates a template for all new entries in listview-->
+                    <DataTemplate x:DataType="local:Item">
+                        <StackPanel BorderBrush="AliceBlue" Orientation="Horizontal" Padding="3" BorderThickness="2" Pivot.SlideInAnimationGroup="GroupTwo" HighContrastAdjustment="Application" HorizontalAlignment="Left" VerticalAlignment="Center" Width="900" Background="Transparent">
+                            <TextBlock
+                                FlowDirection="LeftToRight"
+                                Text="{x:Bind Mode=OneWay, Path=text}"
+                                VariableSizedWrapGrid.ColumnSpan="5"
+                                FontSize="15"
+                                Foreground="FloralWhite"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontWeight="Medium"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel ScrollViewer.IsVerticalRailEnabled="True" VerticalAlignment="Bottom" RequestedTheme="Dark"
+                            ItemsUpdatingScrollMode="KeepLastItemInView"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+
+            </ListView>
+
         </Grid>
+
+
+
     </Grid>
 </Page>
+
