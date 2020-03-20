@@ -43,11 +43,11 @@
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
   <PropertyGroup>
     <ProjectGuid>3077591f-c010-4f98-9811-125233f93da9</ProjectGuid>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>Package_StoreKey.pfx</PackageCertificateKeyFile>
-    <EntryPointProjectUniqueName>..\UWP\UWP.csproj</EntryPointProjectUniqueName>
+    <EntryPointProjectUniqueName>..\HateSpeechDetector\HateSpeechDetector.csproj</EntryPointProjectUniqueName>
     <PackageCertificateThumbprint>FDF9AB29DF3EA3C7FEC1556B17B9B785A635A80B</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
@@ -82,7 +82,6 @@
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
@@ -100,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FullTrust\FullTrust.csproj" />
-    <ProjectReference Include="..\UWP\UWP.csproj" />
+    <ProjectReference Include="..\HateSpeechDetector\HateSpeechDetector.csproj" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
