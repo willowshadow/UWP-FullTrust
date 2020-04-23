@@ -3,16 +3,333 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:HateSpeechDetector.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    NavigationCacheMode="Enabled"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
-    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid x:Name="ContentArea">
+        <Grid Margin="0,0,810,0" RequestedTheme="Dark">
+
+            <!--  Grid column and rowdefinition define how much rows and width will the grid take. * means as much as avaliable  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--  these border tags are setting background colour of the grid  -->
+            <Border
+                Margin="0,0,5,0"
+                d:IsHidden="False"
+                Background="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}" />
+
+
+
+            <StackPanel Margin="0,0,75,0">
+
+                <TextBox
+                    x:Name="UserHandle"
+                    Width="400"
+                    Height="50"
+                    Margin="20,30,200,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderBrush="{ThemeResource SystemControlBaseMediumLowAcrylicWindowMediumBrush}"
+                    BorderThickness="1"
+                    CornerRadius="15"
+                    FontSize="23"
+                    Foreground="AliceBlue"
+                    PlaceholderForeground="CadetBlue"
+                    PlaceholderText="@User Handle" />
+                <Button
+                    x:Name="Detect"
+                    Height="50"
+                    Margin="450,-50,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    AllowFocusOnInteraction="True"
+                    BorderBrush="{ThemeResource SystemControlBaseMediumLowAcrylicWindowMediumBrush}"
+                    BorderThickness="1"
+                    Click="Button_Click"
+                    Content="Start Search"
+                    CornerRadius="15" />
+
+            </StackPanel>
+            <StackPanel Margin="40,105,0,0">
+
+                <ToggleSwitch
+                    x:Name="tweetlimit"
+                    Margin="0,0,0,0"
+                    Header="Tweet Limit"
+                    IsOn="False"
+                    Toggled="tweetlimit_Toggled" />
+
+                <TextBox
+                    x:Name="tweetrate"
+                    Width="200"
+                    Height="40"
+                    Margin="150,-50,0,0"
+                    HorizontalAlignment="Left"
+                    BeforeTextChanging="tweetrate_BeforeTextChanging"
+                    InputScope="Default"
+                    IsEnabled="False"
+                    IsTextPredictionEnabled="True"
+                    PlaceholderForeground="CadetBlue"
+                    PlaceholderText="Enter Tweet Count" />
+
+            </StackPanel>
+
+            <ProgressRing
+                x:Name="progress"
+                Width="50"
+                Height="50"
+                Margin="570,0,0,840"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Foreground="GhostWhite"
+                IsActive="False" />
+
+
+            <Frame
+                x:Name="Details"
+                Width="650"
+                Height="700"
+                Margin="0,300,0,0"
+                HorizontalAlignment="Left"
+                Background="{ThemeResource SystemControlAccentDark1AcrylicWindowAccentDark1Brush}"
+                Visibility="Collapsed">
+
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <PaneThemeTransition />
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+                <Frame.Content>
+                    <StackPanel>
+                        <StackPanel.Transitions>
+                            <TransitionCollection>
+                                <NavigationThemeTransition />
+                            </TransitionCollection>
+                        </StackPanel.Transitions>
+                        <PersonPicture
+                            x:Name="Profile_Frame"
+                            Width="70"
+                            Margin="20,20,0,0"
+                            HorizontalAlignment="Left"
+                            CornerRadius="20"
+                            UseLayoutRounding="True" />
+                        <HyperlinkButton
+                            Margin="20,20,0,0"
+                            HorizontalAlignment="Left"
+                            FontSize="18"
+                            Foreground="Wheat" />
+                        <TextBlock
+                            x:Name="Profile_Name"
+                            Margin="20,20,0,0"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            FontWeight="Medium"
+                            Foreground="LightSkyBlue" />
+                        <TextBlock
+                            x:Name="Profile_Tweet"
+                            Margin="20,20,0,0"
+                            HorizontalAlignment="Left"
+                            FontSize="18"
+                            IsTextSelectionEnabled="True"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            x:Name="Pred_Class"
+                            Margin="20,20,0,0"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            x:Name="Pred_Class_text"
+                            Margin="20,20,0,0"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            TextWrapping="Wrap" />
+                        <ProgressBar
+                            x:Name="Prediction_Percentage"
+                            Width="600"
+                            Height="20"
+                            Margin="20,20,0,0"
+                            HorizontalAlignment="Left"
+                            Background="{ThemeResource SystemAccentColorDark3}"
+                            CornerRadius="12"
+                            Foreground="{ThemeResource SystemAccentColorLight3}" />
+                    </StackPanel>
+
+                </Frame.Content>
+            </Frame>
+
+
+            <!--  these border tags are setting background colour of the grid  -->
+
+
+
+
+
+        </Grid>
         <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            Height="1000"
+            Margin="650,0,0,0"
+            VerticalAlignment="Bottom"
+            RequestedTheme="Dark">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="950" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  these border tags are setting background colour of the grid  -->
+            <Border Background="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}" />
             <!--
-                The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.
             -->
+            <!--  Listview for displaying items from database ( x:Bind Items takes elements from ITEM class) datafetch takes 1 element at a time  -->
+            <TextBlock
+                x:Name="Detected_Quanity"
+                Width="450"
+                Height="50"
+                Margin="20,65,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="23"
+                Foreground="Wheat" />
+            <Button
+                Width="100"
+                Height="50"
+                Margin="20,60,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Click="Button_Click_1"
+                Content="Clear list"
+                CornerRadius="15" />
+
+            <ListView
+                x:Name="ItemsList"
+                Margin="0,120,0,0"
+                CanBeScrollAnchor="True"
+                DataFetchSize="5"
+                Foreground="Beige"
+                IncrementalLoadingThreshold="1"
+                IncrementalLoadingTrigger="None"
+                IsItemClickEnabled="True"
+                ItemClick="ItemsList_ItemClick"
+                ItemsSource="{x:Bind Path=Items}"
+                SelectionMode="Single"
+                ShowsScrollingPlaceholders="True">
+                <ListView.ItemTemplate>
+                    <!--  Datatemplate simply creates a template for all new entries in listview  -->
+                    <DataTemplate x:DataType="local:Item">
+                        <StackPanel
+                            x:Name="ItemStack"
+                            Width="Auto"
+                            Margin="0,0,0,0"
+                            Padding="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Background="{Binding HTCOLOR}"
+                            BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="20"
+                            HighContrastAdjustment="Application"
+                            Orientation="Vertical"
+                            Pivot.SlideInAnimationGroup="GroupTwo"
+                            Spacing="2">
+
+                            <StackPanel Spacing="0">
+                                <PersonPicture
+                                    x:Name="Profile"
+                                    Width="30"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    ProfilePicture="{x:Bind Path=picture_url}" />
+                                <TextBlock
+                                    Margin="50,-30,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FlowDirection="LeftToRight"
+                                    FontFamily="{ThemeResource MTCMediaFontFamily}"
+                                    FontSize="15"
+                                    FontWeight="Medium"
+                                    Foreground="{ThemeResource SystemControlAcrylicWindowBrush}"
+                                    Text="{x:Bind Mode=OneWay, Path=username}"
+                                    VariableSizedWrapGrid.ColumnSpan="1" />
+                                <TextBlock
+                                    Margin="50,-30,0,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FlowDirection="LeftToRight"
+                                    FontFamily="{ThemeResource MTCMediaFontFamily}"
+                                    FontSize="12"
+                                    FontWeight="Light"
+                                    Foreground="White"
+                                    Text="{x:Bind Mode=OneWay, Path=picture_url}"
+                                    VariableSizedWrapGrid.ColumnSpan="5"
+                                    Visibility="Collapsed" />
+                                <TextBlock
+                                    Margin="790,-30,0,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    FlowDirection="LeftToRight"
+                                    FontFamily="{ThemeResource MTCMediaFontFamily}"
+                                    FontSize="12"
+                                    FontWeight="Light"
+                                    Foreground="Black"
+                                    Text="{x:Bind Mode=OneWay, Path=timestamp}"
+                                    VariableSizedWrapGrid.ColumnSpan="5" />
+
+                            </StackPanel>
+
+                            <StackPanel
+                                BorderBrush="Black"
+                                Orientation="Horizontal"
+                                Spacing="2" />
+                            <TextBlock
+                                Margin="50,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                FlowDirection="LeftToRight"
+                                FontFamily="{ThemeResource MTCMediaFontFamily}"
+                                FontSize="13"
+                                FontWeight="Normal"
+                                Foreground="{ThemeResource SystemAltHighColor}"
+                                Text="{x:Bind Mode=OneWay, Path=text}"
+                                TextWrapping="Wrap"
+                                VariableSizedWrapGrid.ColumnSpan="5" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel
+                            VerticalAlignment="Bottom"
+                            ItemsUpdatingScrollMode="KeepLastItemInView"
+                            RequestedTheme="Dark"
+                            ScrollViewer.IsVerticalRailEnabled="True" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="3" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+
+            </ListView>
+
         </Grid>
+
+
+
     </Grid>
 </Page>

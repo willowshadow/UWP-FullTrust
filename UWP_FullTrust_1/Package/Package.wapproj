@@ -44,7 +44,7 @@
   <PropertyGroup>
     <ProjectGuid>3077591f-c010-4f98-9811-125233f93da9</ProjectGuid>
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>Package_StoreKey.pfx</PackageCertificateKeyFile>
     <EntryPointProjectUniqueName>..\HateSpeechDetector\HateSpeechDetector.csproj</EntryPointProjectUniqueName>

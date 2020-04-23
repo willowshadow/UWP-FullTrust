@@ -10,16 +10,21 @@
     xmlns:helpers="using:HateSpeechDetector.Helpers"
     xmlns:views="using:HateSpeechDetector.Views"
     Loaded="OnLoaded"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
 
     <winui:NavigationView
         x:Name="navigationView"
-        IsBackButtonVisible="Visible"
-        IsBackEnabled="{x:Bind IsBackEnabled, Mode=OneWay}"
+        IsBackButtonVisible="Collapsed"
+        IsBackEnabled="{x:Bind IsBackEnabled, Mode=OneTime}"
+        IsPaneOpen="True"
         SelectedItem="{x:Bind Selected, Mode=OneWay}"
         ItemInvoked="OnItemInvoked"
-        IsSettingsVisible="False"
-        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        IsSettingsVisible="True"
+        PaneDisplayMode="Auto"
+        IsPaneToggleButtonVisible="False"
+        
+        Background="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}">
         <winui:NavigationView.MenuItems>
             <!--
             TODO WTS: Change the symbols for each item as appropriate for your app
@@ -27,11 +32,18 @@
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <winui:NavigationViewItem x:Uid="Shell_LiveSearch" Icon="Document" helpers:NavHelper.NavigateTo="views:LiveSearchPage" />
-            <winui:NavigationViewItem x:Uid="Shell_UserSearch" Icon="Document" helpers:NavHelper.NavigateTo="views:UserSearchPage" />
+            <winui:NavigationViewItem x:Uid="Shell_LiveSearch" Icon="List" helpers:NavHelper.NavigateTo="views:LiveSearchPage" />
+            <winui:NavigationViewItem x:Uid="Shell_UserSearch" Icon="Contact" helpers:NavHelper.NavigateTo="views:UserSearchPage" />
             <winui:NavigationViewItem x:Uid="Shell_ManualSearch" Icon="Document" helpers:NavHelper.NavigateTo="views:ManualSearchPage" />
-            <winui:NavigationViewItem x:Uid="Shell_SchemeActivationSample" Icon="Document" helpers:NavHelper.NavigateTo="views:SchemeActivationSamplePage" />
+            <!--<winui:NavigationViewItem x:Uid="Shell_SchemeActivationSample" Icon="Document" helpers:NavHelper.NavigateTo="views:SchemeActivationSamplePage" />-->
         </winui:NavigationView.MenuItems>
+        <winui:NavigationView.MenuItemContainerStyle>
+            <Style TargetType="winui:NavigationViewItem">
+                
+                    <Setter Property="Margin" Value="3.5"/>
+             
+            </Style>
+        </winui:NavigationView.MenuItemContainerStyle>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior
                 DefaultHeader="{x:Bind Selected.Content, Mode=OneWay}">
@@ -48,7 +60,13 @@
             </behaviors:NavigationViewHeaderBehavior>
         </i:Interaction.Behaviors>
         <Grid>
-            <Frame x:Name="shellFrame" />
+            <Frame x:Name="shellFrame" CacheMode="BitmapCache">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
         </Grid>
     </winui:NavigationView>
 </Page>

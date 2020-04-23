@@ -13,7 +13,7 @@ namespace HateSpeechDetector.Views
     {
         public CmdLineActivationSamplePage()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

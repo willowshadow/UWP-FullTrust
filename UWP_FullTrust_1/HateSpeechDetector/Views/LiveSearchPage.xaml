@@ -7,54 +7,122 @@
     xmlns:local="using:HateSpeechDetector.Views"
     xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Style="{ThemeResource ResourceKey=PageStyle}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
     <Grid x:Name="ContentArea">
-        <Grid Margin="0,0,810,0" RequestedTheme="Dark">
+        <Grid Margin="0,0,0,0">
 
             <!--Grid column and rowdefinition define how much rows and width will the grid take. * means as much as avaliable-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="700"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--these border tags are setting background colour of the grid-->
-            <Border Background="#2f5cb6" Margin="0,0,-115,0" d:IsHidden="True"/>
+            <Border Background="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}" Margin="0,0,5,0" d:IsHidden="False"/>
 
 
 
-            <StackPanel Grid.Column="1">
+            <StackPanel Margin="0,-15,0,0">
 
                 <TextBox
                     x:Name="Keyword"
                     FontSize="23"
                     Width="400"
                     Height="50"
-                    BorderThickness="2"
-                    BorderBrush="AliceBlue"
-                    PlaceholderText="Enter Keywords"
-                    Foreground="CadetBlue"
+                    BorderThickness="1"
+                    BorderBrush="{ThemeResource SystemControlBaseMediumLowAcrylicWindowMediumBrush}"
+                    PlaceholderText="Enter Keywords - Use ',' as seperator "                  
                     PlaceholderForeground="CadetBlue"               
                     VerticalAlignment="Top"
-                    HorizontalAlignment="Center"
-                    Margin="0,30,200,0"/>
+                    HorizontalAlignment="Left"
+                    Margin="20,30,200,0"
+                    CornerRadius="15"/>
                 <Button
-                    x:Name="Detect"
-                    CompositeMode="SourceOver" 
+                    x:Name="Detect"                   
                     Content="Start Stream"
                     Click="Button_Click"
-                    BorderBrush="AliceBlue"
+                    BorderBrush="{ThemeResource SystemControlChromeHighAcrylicElementMediumBrush}"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Left"
-                    BorderThickness="2"
+                    BorderThickness="1"
                     Height="50"
-                    Margin="610,-50,0,0"
-                    RenderTransformOrigin="0.5,0.5"/>
+                    Margin="450,-50,0,0"
+                    AllowFocusOnInteraction="True"
+                    CornerRadius="15"/>
 
             </StackPanel>
 
-            <ProgressRing x:Name="progress" IsActive="False" Height="100" Width="100" Foreground="AliceBlue" Margin="0,0,0,400" />
+            <StackPanel Margin="30,100,0,0">
+                <ToggleSwitch x:Name="Location"
+                          Header="Location Search"
+                          IsOn="False"
+                          Margin="0,0,0,0"
+                          Toggled="Location_Toggled"/>
 
+                <DropDownButton x:Name="Countrylist" Height="40" Width="200" Margin="150,-50,0,0" IsEnabled="False" HorizontalAlignment="Left" FlowDirection="RightToLeft">
+                    <DropDownButton.Content>Country List</DropDownButton.Content>
+                    <DropDownButton.Flyout>
+                        <Flyout Placement="BottomEdgeAlignedLeft">
+                            <ListView x:Name="Countrylistitem" ItemsSource="{x:Bind DropdownItems}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="x:String">
+                                        <TextBlock x:Name="Country" Text="{x:Bind}" IsTextSelectionEnabled="False"></TextBlock>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Flyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+
+            </StackPanel>
+
+            <StackPanel Margin="30,165,0,0">
+                
+                <ToggleSwitch
+                    x:Name="AdvanceLocation"
+                          Header="User Specified"
+                          IsOn="False"
+                          Margin="0,0,0,0"
+                          Toggled="AdvanceLocation_Toggled"/>
+
+                <TextBox  x:Name="UserName" Height="40" Width="200" Margin="150,-50,0,0" PlaceholderText="Enter User Handle" PlaceholderForeground="CadetBlue" IsEnabled="False" HorizontalAlignment="Left"/>
+
+            </StackPanel>
+
+
+            <ProgressRing x:Name="progress" IsActive="False" Height="50" Width="50" Foreground="GhostWhite"  Margin="570,-30,0,840" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+
+            <Frame x:Name="Details" Background="{ThemeResource SystemControlAccentDark1AcrylicWindowAccentDark1Brush}" ScrollViewer.VerticalScrollBarVisibility="Visible"  Visibility="Collapsed" Height="700" Width="650" HorizontalAlignment="Left" Margin="0,250,0,0" >
+
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <PaneThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+                <Frame.Content>
+                    <StackPanel CanBeScrollAnchor="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                        <StackPanel.Transitions>
+                            <TransitionCollection>
+                                <NavigationThemeTransition/>
+                            </TransitionCollection>
+                        </StackPanel.Transitions>
+                        <PersonPicture x:Name="Profile_Frame" Width="100" HorizontalAlignment="Left" CornerRadius="20" Margin="20,20,0,0" UseLayoutRounding="True"/>
+                        <HyperlinkButton Foreground="Wheat" HorizontalAlignment="Left" Margin="20,20,0,0" FontSize="25"/>
+                        <TextBlock x:Name="Profile_Name" Foreground="LightSkyBlue" HorizontalAlignment="Left" Margin="20,20,0,0" FontSize="20" FontWeight="Medium"/>
+                        <TextBlock x:Name="Profile_Tweet" HorizontalAlignment="Left" Margin="20,20,0,0" FontSize="20" TextWrapping="Wrap" IsTextSelectionEnabled="True"/>
+                        <TextBlock x:Name="Pred_Class" HorizontalAlignment="Left" Margin="20,20,0,0" FontSize="20" TextWrapping="Wrap"/>
+                        <TextBlock x:Name="Pred_Class_text" HorizontalAlignment="Left" Margin="20,20,0,0" FontSize="20" TextWrapping="Wrap"/>
+                        <ProgressBar x:Name="Prediction_Percentage" HorizontalAlignment="Left" Margin="20,20,0,0" Foreground="{ThemeResource SystemColorHighlightTextColor}" Background="{ThemeResource SystemAccentColorDark3}" Width="600" Height="20" CornerRadius="12"/>
+
+                    </StackPanel>
+
+                </Frame.Content>
+
+            </Frame>
 
 
             <!--these border tags are setting background colour of the grid-->
@@ -64,7 +132,7 @@
 
 
         </Grid>
-        <Grid RequestedTheme="Dark" Height="1080" Margin="900,0,0,0" VerticalAlignment="Bottom">
+        <Grid Height="1000" Margin="650,0,0,0" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -73,37 +141,92 @@
             </Grid.RowDefinitions>
 
             <!--these border tags are setting background colour of the grid-->
-            <Border Background="#152951"/>
+            <Border Background="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}"/>
 
             <!--
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.
             -->
+            <TextBlock x:Name="Detected_Quanity" FontSize="23" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,65,0,0" Width="450" Height="50" Foreground="Wheat"/>
+            <Button Content="Clear list" Width="100" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="15" Margin="560,60,0,0" Click="Button_Click_1"/>
             <!--Listview for displaying items from database ( x:Bind Items takes elements from ITEM class) datafetch takes 1 element at a time -->
-            <ListView x:Name="ItemsList" ShowsScrollingPlaceholders="True" CanBeScrollAnchor="True" ItemContainerStyle="{ThemeResource ListViewItemExpanded}" ItemsSource="{x:Bind Path=Items}" DataFetchSize="1" IncrementalLoadingTrigger="None" IncrementalLoadingThreshold="1">
+            <ListView x:Name="ItemsList" ShowsScrollingPlaceholders="True" CanBeScrollAnchor="True" ItemsSource="{x:Bind Path=Items}" SelectionMode="Single" Foreground="Beige" IsItemClickEnabled="True" ItemClick="ItemsList_ItemClick" DataFetchSize="1" IncrementalLoadingTrigger="Edge" IncrementalLoadingThreshold="1" Margin="0,120,0,0">
                 <ListView.ItemTemplate>
                     <!--Datatemplate simply creates a template for all new entries in listview-->
                     <DataTemplate x:DataType="local:Item">
-                        <StackPanel BorderBrush="AliceBlue" Orientation="Horizontal" Padding="3" BorderThickness="2" Pivot.SlideInAnimationGroup="GroupTwo" HighContrastAdjustment="Application" HorizontalAlignment="Left" VerticalAlignment="Center" Width="900" Background="Transparent">
+                        <StackPanel x:Name="ItemStack" BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}" Orientation="Vertical" CornerRadius="20" Spacing="2" Padding="3" BorderThickness="1"  Pivot.SlideInAnimationGroup="GroupTwo" HighContrastAdjustment="Application" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0" Width="Auto" Background="{Binding HTCOLOR}">
+
+                            <StackPanel Spacing="0">
+                                <PersonPicture x:Name="Profile" Width="30" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" ProfilePicture="{x:Bind Path=picture_url}"/>
+                                <TextBlock
+                                FlowDirection="LeftToRight"
+                                Text="{x:Bind Mode=OneWay, Path=username}"
+                                VariableSizedWrapGrid.ColumnSpan="1"
+                                FontSize="15"
+                                FontFamily="{ThemeResource  MTCMediaFontFamily}"
+                                Foreground="{ThemeResource  SystemControlAcrylicWindowBrush}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontWeight="Medium"
+                                Margin="50,-30,0,0"/>
+                                <TextBlock
+                                FlowDirection="LeftToRight"
+                                Text="{x:Bind Mode=OneWay, Path=picture_url}"
+                                VariableSizedWrapGrid.ColumnSpan="5"
+                                FontSize="12"
+                                FontFamily="{ThemeResource  MTCMediaFontFamily}"
+                                Foreground="White"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontWeight="Light"
+                                Margin="50,-30,0,10"
+                                Visibility="Collapsed"/>
+                                <TextBlock
+                                FlowDirection="LeftToRight"
+                                Text="{x:Bind Mode=OneWay, Path=timestamp}"
+                                VariableSizedWrapGrid.ColumnSpan="5"
+                                FontSize="12"
+                                FontFamily="{ThemeResource  MTCMediaFontFamily}"
+                                Foreground="Black"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                FontWeight="Light"
+                                Margin="790,-30,0,10"/>
+
+                            </StackPanel>
+                            
+                            <StackPanel BorderBrush="Black" Orientation="Horizontal" Spacing="2">
+                            </StackPanel>
                             <TextBlock
                                 FlowDirection="LeftToRight"
                                 Text="{x:Bind Mode=OneWay, Path=text}"
                                 VariableSizedWrapGrid.ColumnSpan="5"
-                                FontSize="15"
-                                Foreground="FloralWhite"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontWeight="Medium"/>
+                                FontSize="13"
+                                FontFamily="{ThemeResource  MTCMediaFontFamily}"
+                                Foreground="{ThemeResource  SystemAltHighColor}"
+                                HorizontalAlignment="Left"
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Bottom"
+                                Margin="50,0,0,0"
+                                FontWeight="Normal"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.ItemsPanel>
-
+ 
                     <ItemsPanelTemplate>
-                        <ItemsStackPanel ScrollViewer.IsVerticalRailEnabled="True" VerticalAlignment="Bottom" RequestedTheme="Dark"
+                        <ItemsStackPanel ScrollViewer.IsVerticalRailEnabled="True" VerticalAlignment="Center" RequestedTheme="Default"
                             ItemsUpdatingScrollMode="KeepLastItemInView"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                        <Setter Property="Margin" Value="3.5"/>
+                        <Setter Property="FlowDirection" Value="LeftToRight"/>
+
+                    </Style>
+                </ListView.ItemContainerStyle>
 
 
             </ListView>

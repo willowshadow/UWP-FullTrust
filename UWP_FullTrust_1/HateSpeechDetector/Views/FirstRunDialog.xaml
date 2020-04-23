@@ -5,16 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Uid="FirstRunDialog"
-    d:DesignHeight="345"
+    d:DesignHeight="500"
     d:DesignWidth="550"
     mc:Ignorable="d">
     <ContentDialog.TitleTemplate>
         <DataTemplate x:DataType="x:String">
             <StackPanel Orientation="Horizontal">
-                <Image
-                    Width="40"
-                    Height="40"
-                    Source="ms-appx:///Assets/StoreLogo.png" />
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center"
